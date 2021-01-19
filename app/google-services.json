@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "578328627617",
+    "project_id": "stellar-shard-251115",
+    "storage_bucket": "stellar-shard-251115.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578328627617:android:83aa462e006803663be3e0",
+        "android_client_info": {
+          "package_name": "com.wangpeng.firstfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "578328627617-0pjsgvcod1peknut3tfafifahvomn2cg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMP4feciK8Js4a1hVqWAvAbo7zDGer2GU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578328627617-0pjsgvcod1peknut3tfafifahvomn2cg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
