@@ -1,24 +1,14 @@
 package com.wangpeng.firstfirebase.ui.combine
 
-import android.Manifest
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.*
 import android.os.Bundle
-import android.provider.Settings
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.wangpeng.firstfirebase.R
 import com.wangpeng.firstfirebase.domain.model.DetailInfoModel
-import com.wangpeng.firstfirebase.utils.state.Result
-import kotlinx.android.synthetic.main.activity_combine.*
+import com.wangpeng.lib_net.state.RequestResult
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 
 class CombineActivity : AppCompatActivity() {
@@ -38,11 +28,11 @@ class CombineActivity : AppCompatActivity() {
         }
     }
 
-    private fun handlerCombineDouBanResult(result: Result<List<DetailInfoModel>>) {
+    private fun handlerCombineDouBanResult(result: RequestResult<List<DetailInfoModel>>) {
         when (result) {
-            is Result.Success -> showCombineDouBan(result.data)
-            is Result.Loading -> showLoading()
-            is Result.Error -> showError()
+            is RequestResult.Success -> showCombineDouBan(result.data)
+            is RequestResult.Loading -> showLoading()
+            is RequestResult.Error -> showError()
         }
     }
 

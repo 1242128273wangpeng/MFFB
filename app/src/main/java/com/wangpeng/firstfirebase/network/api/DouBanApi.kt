@@ -1,7 +1,7 @@
 package com.wangpeng.firstfirebase.network.api
 
 import com.wangpeng.firstfirebase.domain.model.DetailInfoDto
-import com.wangpeng.firstfirebase.utils.Constant
+import com.wangpeng.lib_net.Constant
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query

@@ -7,8 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wangpeng.firstfirebase.R
 import com.wangpeng.firstfirebase.domain.model.DouBanModel
-import com.wangpeng.firstfirebase.utils.state.Result
 import com.wangpeng.firstfirebase.utils.RecyclerLifecycleUtils
+import com.wangpeng.lib_net.state.RequestResult
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -41,11 +41,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
     }
 
-    private fun handlerGetDouBanResult(result: Result<List<DouBanModel>>) {
+    private fun handlerGetDouBanResult(result: RequestResult<List<DouBanModel>>) {
         when (result) {
-            is Result.Success -> showDouBanList(result.data)
-            is Result.Loading -> showLoading()
-            is Result.Error -> showError()
+            is RequestResult.Success -> showDouBanList(result.data)
+            is RequestResult.Loading -> showLoading()
+            is RequestResult.Error -> showError()
         }
     }
 

@@ -7,16 +7,17 @@ import androidx.lifecycle.viewModelScope
 import com.wangpeng.firstfirebase.domain.model.DetailInfoModel
 import com.wangpeng.firstfirebase.domain.model.DouBanModel
 import com.wangpeng.firstfirebase.domain.usecase.CombineDouBanUserCase
-import com.wangpeng.firstfirebase.utils.state.Result
+import com.wangpeng.lib_net.state.RequestResult
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.atomic.AtomicInteger
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flatMapMerge
+import kotlinx.coroutines.flow.flow
 
 
 class CombineViewModel(private val combineDouBanUserCase: CombineDouBanUserCase) : ViewModel() {
-    private var detailInfoMuLiveData = MutableLiveData<Result<List<DetailInfoModel>>>()
-    val detailInfoLiveData: LiveData<Result<List<DetailInfoModel>>> = detailInfoMuLiveData
+    private var detailInfoMuLiveData = MutableLiveData<RequestResult<List<DetailInfoModel>>>()
+    val detailInfoLiveData: LiveData<RequestResult<List<DetailInfoModel>>> = detailInfoMuLiveData
 
     companion object {
         @Volatile
@@ -46,7 +47,7 @@ class CombineViewModel(private val combineDouBanUserCase: CombineDouBanUserCase)
                             if (countSize == 0
                             ) {
                                 detailInfoMuLiveData.postValue(
-                                    Result.Success(
+                                    RequestResult.Success(
                                         modelResultList
                                     )
                                 )
@@ -56,7 +57,7 @@ class CombineViewModel(private val combineDouBanUserCase: CombineDouBanUserCase)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                detailInfoMuLiveData.postValue(Result.Error())
+                detailInfoMuLiveData.postValue(RequestResult.Error())
             }
         }
     }
@@ -83,7 +84,7 @@ class CombineViewModel(private val combineDouBanUserCase: CombineDouBanUserCase)
                             if (countSize == 0
                             ) {
                                 detailInfoMuLiveData.postValue(
-                                    Result.Success(
+                                    RequestResult.Success(
                                         modelResultList
                                     )
                                 )
@@ -93,7 +94,7 @@ class CombineViewModel(private val combineDouBanUserCase: CombineDouBanUserCase)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                detailInfoMuLiveData.postValue(Result.Error())
+                detailInfoMuLiveData.postValue(RequestResult.Error())
             }
         }
     }
@@ -115,7 +116,7 @@ class CombineViewModel(private val combineDouBanUserCase: CombineDouBanUserCase)
                         }
                     }.awaitAll().asFlow().collect {
                         detailInfoMuLiveData.postValue(
-                            Result.Success(
+                            RequestResult.Success(
                                 modelResultList
                             )
                         )
@@ -123,7 +124,7 @@ class CombineViewModel(private val combineDouBanUserCase: CombineDouBanUserCase)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                detailInfoMuLiveData.postValue(Result.Error())
+                detailInfoMuLiveData.postValue(RequestResult.Error())
             }
         }
     }
@@ -144,7 +145,7 @@ class CombineViewModel(private val combineDouBanUserCase: CombineDouBanUserCase)
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            detailInfoMuLiveData.postValue(Result.Error())
+            detailInfoMuLiveData.postValue(RequestResult.Error())
         }
     }
 }

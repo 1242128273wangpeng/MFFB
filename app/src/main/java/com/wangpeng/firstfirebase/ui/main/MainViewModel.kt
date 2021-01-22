@@ -6,34 +6,34 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wangpeng.firstfirebase.domain.model.DouBanModel
 import com.wangpeng.firstfirebase.domain.usecase.GetDouBanUserCase
-import com.wangpeng.firstfirebase.utils.extensions.intervalLaunch
-import com.wangpeng.firstfirebase.utils.state.Result
+import com.wangpeng.lib_net.extensions.intervalLaunch
+import com.wangpeng.lib_net.state.RequestResult
 import timber.log.Timber
 import java.lang.Exception
 
 class MainViewModel(private val getDouBanUserCase: GetDouBanUserCase) : ViewModel() {
-    private val douBanMutableLiveData = MutableLiveData<Result<List<DouBanModel>>>()
-    val douBanLiveData: LiveData<Result<List<DouBanModel>>> = douBanMutableLiveData
+    private val douBanMutableLiveData = MutableLiveData<RequestResult<List<DouBanModel>>>()
+    val douBanLiveData: LiveData<RequestResult<List<DouBanModel>>> = douBanMutableLiveData
 
     init {
-        getDouBan()
+        intervalGetDouBan()
     }
 
-    private fun getDouBan() {
-        douBanMutableLiveData.postValue(Result.Loading)
-        viewModelScope.intervalLaunch(GET_DOUBAN_INTERVAL_MS) {
+    private fun intervalGetDouBan() {
+        douBanMutableLiveData.postValue(RequestResult.Loading)
+        viewModelScope.intervalLaunch(GET_INTERVAL_MS) {
             try {
                 getDouBanUserCase.execute().let { res ->
-                    douBanMutableLiveData.postValue(Result.Success(res))
+                    douBanMutableLiveData.postValue(RequestResult.Success(res))
                 }
             } catch (e: Exception) {
                 Timber.e(e)
-                douBanMutableLiveData.postValue(Result.Error())
+                douBanMutableLiveData.postValue(RequestResult.Error())
             }
         }
     }
 
     companion object {
-        const val GET_DOUBAN_INTERVAL_MS = 300000L
+        const val GET_INTERVAL_MS = 300000L
     }
 }

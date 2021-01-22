@@ -1,14 +1,13 @@
 package com.wangpeng.firstfirebase.network.di
 
 import com.wangpeng.firstfirebase.network.api.DouBanApi
-import com.wangpeng.firstfirebase.network.converters.NullOnEmptyConverterFactory
 import com.wangpeng.firstfirebase.network.repo.DouBanRepository
-import com.wangpeng.firstfirebase.network.retroflow.RetroFlowCallAdapterFactory
-import com.wangpeng.firstfirebase.network.retroflow.adapters.FlowCallAdapter
-import com.wangpeng.firstfirebase.utils.CommonInterceptor
-import com.wangpeng.firstfirebase.utils.Constant
+import com.wangpeng.lib_net.retroflow.RetroFlowCallAdapterFactory
 import com.wangpeng.firstfirebase.utils.SSLSocketClient
-import com.wangpeng.firstfirebase.utils.loggingInterceptor
+import com.wangpeng.lib_net.Constant
+import com.wangpeng.lib_net.converters.NullOnEmptyConverterFactory
+import com.wangpeng.lib_net.interceptor.CommonInterceptor
+import com.wangpeng.lib_net.interceptor.loggingInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

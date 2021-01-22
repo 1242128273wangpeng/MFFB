@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.wangpeng.firstfirebase.R
 import com.wangpeng.firstfirebase.domain.model.DetailInfoModel
-import com.wangpeng.firstfirebase.utils.state.Result
+import com.wangpeng.lib_net.state.RequestResult
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
         if (intent.extras?.containsKey(MOVICE_ID) == true) {
             val id = intent.getStringExtra(MOVICE_ID) ?: ""
             println("detail id-->$id")
-            detailViewModel.getDetaliDouBan(id)
+            detailViewModel.getDetailDouBan(id)
         }
     }
 
@@ -35,11 +35,11 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun handlerGetDouBanDetailResult(result: Result<DetailInfoModel>) {
+    private fun handlerGetDouBanDetailResult(result: RequestResult<DetailInfoModel>) {
         when (result) {
-            is Result.Success -> showDouBanDetail(result.data)
-            is Result.Loading -> showLoading()
-            is Result.Error -> showError()
+            is RequestResult.Success -> showDouBanDetail(result.data)
+            is RequestResult.Loading -> showLoading()
+            is RequestResult.Error -> showError()
         }
     }
 

@@ -12,15 +12,6 @@ import com.wangpeng.firstfirebase.R
 import com.wangpeng.firstfirebase.domain.model.DouBanModel
 import com.wangpeng.firstfirebase.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.item_dou_ban.view.*
-import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.broadcast
-import kotlinx.coroutines.channels.produce
-import kotlinx.coroutines.channels.receiveOrNull
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.selects.select
-import java.lang.ArithmeticException
 
 class DouBanAdapter : ListAdapter<DouBanModel, DouBanAdapter.ViewHolder>(ItemCallback()) {
 

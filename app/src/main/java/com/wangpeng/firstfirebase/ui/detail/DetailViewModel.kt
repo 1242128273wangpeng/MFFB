@@ -6,22 +6,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.wangpeng.firstfirebase.domain.model.DetailInfoModel
 import com.wangpeng.firstfirebase.domain.usecase.GetDetailUserCase
-import com.wangpeng.firstfirebase.utils.state.Result
+import com.wangpeng.lib_net.state.RequestResult
 import kotlinx.coroutines.launch
 
 class DetailViewModel(private val getDetailUserCase: GetDetailUserCase) : ViewModel() {
-    private var detailInfoMuLiveData = MutableLiveData<Result<DetailInfoModel>>()
-    val detailInfoLiveData: LiveData<Result<DetailInfoModel>> = detailInfoMuLiveData
+    private var detailInfoMuLiveData = MutableLiveData<RequestResult<DetailInfoModel>>()
+    val detailInfoLiveData: LiveData<RequestResult<DetailInfoModel>> = detailInfoMuLiveData
 
-    fun getDetaliDouBan(id: String) {
+    fun getDetailDouBan(id: String) {
         viewModelScope.launch {
             try {
                 getDetailUserCase.execute(id).let {
-                    detailInfoMuLiveData.postValue(Result.Success(it?:DetailInfoModel()))
+                    detailInfoMuLiveData.postValue(RequestResult.Success(it?:DetailInfoModel()))
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
-                detailInfoMuLiveData.postValue(Result.Error())
+                detailInfoMuLiveData.postValue(RequestResult.Error())
             }
         }
     }
